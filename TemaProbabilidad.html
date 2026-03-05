@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Probabilidad – InnovaIO</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Tema3-bivariante2.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./TemaProbabilidad.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">InnovaIO</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Presentación</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tema1-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción a R y RStudio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tema2-conjunto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estadística descriptiva univariante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tema3-bivariante2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tema 3. Estadística descriptiva bivariante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TemaProbabilidad.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#experimentos-aleatorios-y-sucesos" id="toc-experimentos-aleatorios-y-sucesos" class="nav-link active" data-scroll-target="#experimentos-aleatorios-y-sucesos"><span class="header-section-number">5.1</span> Experimentos aleatorios y sucesos</a></li>
+  <li><a href="#algunos-sucesos-especiales" id="toc-algunos-sucesos-especiales" class="nav-link" data-scroll-target="#algunos-sucesos-especiales"><span class="header-section-number">5.2</span> Algunos sucesos especiales</a></li>
+  <li><a href="#operaciones-con-sucesos" id="toc-operaciones-con-sucesos" class="nav-link" data-scroll-target="#operaciones-con-sucesos"><span class="header-section-number">5.3</span> Operaciones con sucesos</a></li>
+  <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link" data-scroll-target="#probabilidad"><span class="header-section-number">5.4</span> Probabilidad</a>
+  <ul class="collapse">
+  <li><a href="#método-frecuentista" id="toc-método-frecuentista" class="nav-link" data-scroll-target="#método-frecuentista"><span class="header-section-number">5.4.1</span> Método frecuentista</a></li>
+  <li><a href="#regla-de-laplace" id="toc-regla-de-laplace" class="nav-link" data-scroll-target="#regla-de-laplace"><span class="header-section-number">5.4.2</span> Regla de Laplace</a></li>
+  <li><a href="#definición-axiomática-de-probabilidad" id="toc-definición-axiomática-de-probabilidad" class="nav-link" data-scroll-target="#definición-axiomática-de-probabilidad"><span class="header-section-number">5.4.3</span> Definición axiomática de probabilidad</a></li>
+  <li><a href="#propiedades-de-la-probabilidad" id="toc-propiedades-de-la-probabilidad" class="nav-link" data-scroll-target="#propiedades-de-la-probabilidad"><span class="header-section-number">5.4.4</span> Propiedades de la probabilidad</a></li>
+  </ul></li>
+  <li><a href="#probabilidad-condicionada" id="toc-probabilidad-condicionada" class="nav-link" data-scroll-target="#probabilidad-condicionada"><span class="header-section-number">5.5</span> Probabilidad condicionada</a>
+  <ul class="collapse">
+  <li><a href="#regla-del-producto" id="toc-regla-del-producto" class="nav-link" data-scroll-target="#regla-del-producto"><span class="header-section-number">5.5.1</span> Regla del producto</a></li>
+  </ul></li>
+  <li><a href="#teorema-de-la-probabilidad-total" id="toc-teorema-de-la-probabilidad-total" class="nav-link" data-scroll-target="#teorema-de-la-probabilidad-total"><span class="header-section-number">5.6</span> Teorema de la probabilidad total</a></li>
+  <li><a href="#regla-de-bayes" id="toc-regla-de-bayes" class="nav-link" data-scroll-target="#regla-de-bayes"><span class="header-section-number">5.7</span> Regla de Bayes</a></li>
+  <li><a href="#aplicación-de-la-regla-de-bayes-al-análisis-de-pruebas-forenses-en-criminología" id="toc-aplicación-de-la-regla-de-bayes-al-análisis-de-pruebas-forenses-en-criminología" class="nav-link" data-scroll-target="#aplicación-de-la-regla-de-bayes-al-análisis-de-pruebas-forenses-en-criminología"><span class="header-section-number">5.8</span> Aplicación de la Regla de Bayes al análisis de pruebas forenses en criminología</a>
+  <ul class="collapse">
+  <li><a href="#cuantificación-de-las-evidencias-forenses-mediante-razones-de-verosimilitud" id="toc-cuantificación-de-las-evidencias-forenses-mediante-razones-de-verosimilitud" class="nav-link" data-scroll-target="#cuantificación-de-las-evidencias-forenses-mediante-razones-de-verosimilitud"><span class="header-section-number">5.8.1</span> Cuantificación de las evidencias forenses mediante razones de verosimilitud</a></li>
+  <li><a href="#caso-real-indentificación-de-los-restos-de-ricardo-iii" id="toc-caso-real-indentificación-de-los-restos-de-ricardo-iii" class="nav-link" data-scroll-target="#caso-real-indentificación-de-los-restos-de-ricardo-iii"><span class="header-section-number">5.8.2</span> Caso real: indentificación de los restos de Ricardo III</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- Probabilidad: -->
+<!--     Sucesos. Propiedades de sucesos. Independencia de sucesos. Aplicaciones. Teoremas de probabilidad total y Bayes. Aplicaciones. -->
+<section id="experimentos-aleatorios-y-sucesos" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="experimentos-aleatorios-y-sucesos"><span class="header-section-number">5.1</span> Experimentos aleatorios y sucesos</h2>
+<p>Experimentos aleatorios y sucesos</p>
+<p>La teoría de la probabilidad es una rama de las matemáticas que estudia situaciones en las que interviene el azar. Se ocupa de fenómenos o experimentos en los que, aun repitiéndolos en las mismas condiciones, no podemos predecir con total certeza cuál será el resultado, aunque sí podemos describir las posibilidades existentes.</p>
+<p>Hablamos de <strong>experimentos aleatorios</strong> cuando el resultado final es impredecible y sólo se conoce una vez realizado el experimento. Sin embargo, antes de llevarlo a cabo, podemos enumerar todos los resultados posibles, aunque no sepamos cuál ocurrirá en cada ocasión.</p>
+<p>Algunos ejemplos habituales de experimentos aleatorios son:</p>
+<ul>
+<li><p>Lanzar una moneda y ver si sale cara o cruz,</p></li>
+<li><p>Tirar un dado y observar qué número aparece,</p></li>
+<li><p>Sacar una bola al azar de una urna,</p></li>
+<li><p>Elegir una carta de una baraja sin mirar antes,</p></li>
+<li><p>Contar cuántos homicidios ocurrirán en Barcelona durante 2026,</p></li>
+<li><p>Determinar si se usaron armas de fuego en un crimen,</p></li>
+<li><p>Encontrar sustancias ilegales en un control rutinario.</p></li>
+</ul>
+<p>En todas estas situaciones, no podemos saber qué va a ocurrir exactamente, pero sí podemos conocer cuáles son las opciones posibles.</p>
+<p>Dado un experimento aleatorio, llamamos:</p>
+<ul>
+<li><p><strong>Espacio muestral</strong>, denotado por <span class="math inline">\(\Omega\)</span>, al conjunto de todos los resultados posibles del experimento.</p></li>
+<li><p><strong>Suceso</strong> a cualquier subconjunto de resultados normalmente caracterizado por una propiedad determinada.</p></li>
+</ul>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consideremos el experimento aleatorio de lanzar una moneda dos veces. El espacio muestral está formado por los cuatro resultados posibles:</p>
+<p><span class="math display">\[
+\Omega=\{cc,cx,xc,xx\},
+\]</span></p>
+<p>donde usamos <span class="math inline">\(c\)</span> para cara y <span class="math inline">\(x\)</span> para cruz.</p>
+<p>Algunos ejemplos de sucesos son:</p>
+<ul>
+<li><p><span class="math inline">\(A=\mbox{``Ha salido exactamente una cara''}=\{cx,xc\}\)</span>,</p></li>
+<li><p><span class="math inline">\(B=\mbox{``Ha salido al menos una cruz''}=\{cx,xc,xx\}\)</span>,</p></li>
+<li><p><span class="math inline">\(C=\mbox{``Ha salido más de una cruz''}=\{xx\}\)</span>,</p></li>
+<li><p><span class="math inline">\(D=\mbox{``No ha salido ninguna  cruz''}=\{cc\}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consideremos el experimento aleatorio de lanzar un dado. El espacio muestral está formado por los seis posibles resultados:</p>
+<p><span class="math display">\[
+\Omega=\{1,2,3,4,5,6\}.
+\]</span></p>
+<p>Ejemplos de sucesos son</p>
+<ul>
+<li><p><span class="math inline">\(A=\mbox{``Sale par''}=\{2,4,6\}\)</span>,</p></li>
+<li><p><span class="math inline">\(B=\mbox{``Sale mayor que 5''}=\{6\}\)</span>,</p></li>
+<li><p><span class="math inline">\(C=\mbox{``Sale menor que 4''}=\{1,2,3\}\)</span>,</p></li>
+<li><p><span class="math inline">\(D=\mbox{``Sale menor que 6 y mayor que 1''}=\{2,3,4,5\}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el contexto de la criminología, consideremos el experimento aleatorio de contabilizar el número de homicidios en Barcelona durante el próximo mes. El espacio muestral es:</p>
+<p><span class="math display">\[
+\Omega=\{0,1,2,3,4,\ldots\}.
+\]</span></p>
+<p>Algunos sucesos posibles son:</p>
+<ul>
+<li><p><span class="math inline">\(A=\mbox{``Hay menos de 5 homicidios''}=\{0,1,2,3,4\}\)</span>,</p></li>
+<li><p><span class="math inline">\(B=\mbox{``Hay algún homicidio''}=\{1,2,3,4,\ldots\}\)</span>,</p></li>
+<li><p><span class="math inline">\(C=\mbox{``No hay ningún homicidio''}=\{0\}\)</span>,</p></li>
+<li><p><span class="math inline">\(D=\mbox{``No hay más de 7 homicidios''}=\{0,1,2,3,4,6,7\}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Elegir al azar un punto en un círculo de radio 1.<br>
+En este caso el espacio muestral es el conjunto <span class="math inline">\(\Omega\)</span> de todos los puntos del círculo.</p>
+<p>Ejemplos de sucesos son:</p>
+<ul>
+<li><p><span class="math inline">\(A=\mbox{``La distancia al centro es menos de 0.5''}\)</span>,</p></li>
+<li><p><span class="math inline">\(B=\mbox{``La distancia al centro es menor que 0.75 y mayor que 0.25''}\)</span>.</p></li>
+</ul>
+<center>
+<img src="circulos.png" class="img-fluid" style="width:15cm">
+</center>
+</div>
+</div>
+<p>Cuando realizamos un experimento aleatorio, diremos que un suceso <span class="math inline">\(A\)</span> <strong>ha ocurrido</strong> (o <strong>se ha observado</strong>) si el resultado obtenido pertenece al conjunto <span class="math inline">\(A\)</span>.</p>
+<p>Por ejemplo, si al lanzar un dado obtenemos un 6, habrán ocurrido los sucesos:</p>
+<p><span class="math display">\[
+A=\mbox{``Sale par''}\quad
+B=\mbox{``Sale mayor que 5''},
+\]</span></p>
+<p>ya que el resultado obtenido 6 cumple ambas condiciones.</p>
+<p>De forma análoga, si al lanzar una moneda dos veces obtenemos dos cruces, habrán ocurrido los sucesos:</p>
+<p><span class="math display">\[B=\mbox{``Ha salido al menos una cruz''},\]</span> <span class="math display">\[C=\mbox{``Ha salido más de una cruz''}.\]</span></p>
+</section>
+<section id="algunos-sucesos-especiales" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="algunos-sucesos-especiales"><span class="header-section-number">5.2</span> Algunos sucesos especiales</h2>
+<p>En cualquier experimento aleatorio distinguimos los siguientes sucesos:</p>
+<ul>
+<li><p><strong>Suceso seguro</strong> al espacio muestral <span class="math inline">\(\Omega\)</span>, que contiene todos los resultados posibles. Se denomina seguro porque siempre ocurre, independientemente del resultado que se obtenga.</p></li>
+<li><p><strong>Suceso imposible</strong> al conjunto vacío <span class="math inline">\(\emptyset\)</span>, que no contiene ningún resultado. Se denomina imposible porque nunca puede ocurrir, ya que no incluye ningún resultado posible.</p></li>
+</ul>
+<p>Dado un suceso <span class="math inline">\(A\)</span> definimos su <strong>complementario</strong>, denotado por <span class="math inline">\(\bar{A}\)</span>, como el conjunto de todos los resultados del espacio muestral que no pertenecen a <span class="math inline">\(A\)</span>.</p>
+<p>En otras palabras, el suceso <span class="math inline">\(\bar{A}\)</span> ocurrirá cuando no ocurra <span class="math inline">\(A\)</span> (y viceversa).</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al lanzar un dado, el espacio muestral es <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span>.</p>
+<p>Consideremos el suceso</p>
+<p><span class="math display">\[
+A=\mbox{``Sale par''}=\{2,4,6\}.
+\]</span></p>
+<p>Su complementario es</p>
+<p><span class="math display">\[
+\bar{A}=\mbox{``No sale par''}=
+\mbox{``Sale impar''}
+=\{1,3,5\}.
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="operaciones-con-sucesos" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="operaciones-con-sucesos"><span class="header-section-number">5.3</span> Operaciones con sucesos</h2>
+<p>Como los sucesos son subconjuntos del espacio muestral <span class="math inline">\(\Omega\)</span>, podemos aplicar sobre ellos las operaciones habituales entre conjuntos.</p>
+<p>Dados dos sucesos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>, definimos:</p>
+<ul>
+<li><p><strong>Unión</strong> <span class="math inline">\(A\cup B\)</span>: Suceso que contiene los elementos de <span class="math inline">\(A\)</span> y los elementos de <span class="math inline">\(B\)</span>. Ocurre cuando ocurre <span class="math inline">\(A\)</span> o ocurre <span class="math inline">\(B\)</span>, o ambos a la vez.</p></li>
+<li><p><strong>Intersección</strong> <span class="math inline">\(A\cap B\)</span>: Suceso que contiene los resultados comunes a <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>. Ocurre cuando <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> ocurren a la vez.</p></li>
+<li><p><strong>Diferencia</strong> <span class="math inline">\(A-B\)</span>: Suceso que los resultados de <span class="math inline">\(A\)</span> que no están en <span class="math inline">\(B\)</span>.<br>
+Ocurre cuando ocurre <span class="math inline">\(A\)</span> y no ocurre <span class="math inline">\(B\)</span>.</p></li>
+</ul>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al lanzar un dado, consideremos los sucesos</p>
+<p><span class="math display">\[
+A=\mbox{``Sale par''}.\quad
+B=\mbox{``Sale menor que 4''}.
+\]</span></p>
+<p>Entonces:</p>
+<ul>
+<li><p><span class="math inline">\(A\cup B=\mbox{``Sale par o sale menor que cuatro''}=\{1,2,3,4,6\}\)</span>,</p></li>
+<li><p><span class="math inline">\(A\cap B=\mbox{``Sale par y sale menor que 4''}=\{2\}\)</span>.</p></li>
+<li><p><span class="math inline">\(A-B=\mbox{``Sale par y no sale menor que 4''}=\{4,6\}\)</span>,</p></li>
+<li><p><span class="math inline">\(\bar{A}=\mbox{``Sale impar''}=\{1,3,5\}\)</span>,</p></li>
+<li><p><span class="math inline">\(\bar{B}=\mbox{``Sale mayor o igual que 4''}=\{4,5,6\}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<p>Para cualquier suceso <span class="math inline">\(A\)</span> se cumple que</p>
+<p><span class="math display">\[
+A\cup \bar{A}=\Omega,
+\]</span></p>
+<p>ya que todo resultado posible pertenece necesariamente a <span class="math inline">\(A\)</span> o a su complementario.</p>
+<p>Por otro lado, se tiene que</p>
+<p><span class="math display">\[
+A\cap \bar{A}=\emptyset,
+\]</span></p>
+<p>puesto que ningún resultado puede pertenecer simultáneamente a un suceso y a su complementario.</p>
+<p>Finalmente, diremos que dos sucesos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son <strong>incompatibles</strong> si</p>
+<p><span class="math display">\[A\cap B=\emptyset.\]</span></p>
+<p>Dos sucesos incompatibles son aquéllos que nunca pueden ocurrir a la vez.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al lanzar un dado, los sucesos</p>
+<ul>
+<li><p><span class="math inline">\(A=\mbox{``Salir par''}=\{2,4,6\}\)</span>,</p></li>
+<li><p><span class="math inline">\(B=\mbox{``Salir impar''}=\{1,3,5\}\)</span>,</p></li>
+</ul>
+<p>son incompatibles.</p>
+</div>
+</div>
+</section>
+<section id="probabilidad" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="probabilidad"><span class="header-section-number">5.4</span> Probabilidad</h2>
+<p>Todos tenemos una idea intuitiva de la probabilidad. Por ejemplo, al lanzar una moneda equilibrada, sabemos que la probabilidad de obtener cara es <span class="math inline">\(0.5\)</span>. Esto refleja que tenemos el mismo grado de certeza de obtener cara que de obtener cruz.</p>
+<p>Dado un suceso <span class="math inline">\(A\)</span>, la <strong>probabilidad</strong> de <span class="math inline">\(A\)</span>, denotada por <span class="math inline">\(\mathbf{P}(A)\)</span>, es un número comprendido entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span> que mide el grado de certidumbre de que dicho suceso ocurra al realizar un experimento aleatorio.</p>
+<p>Dar una definición rigurosa de probabilidad no es inmediato. A lo largo de la historia se han desarrollado distintos enfoques para formalizar este concepto, entre los que destacan:</p>
+<ul>
+<li><p>Método frecuentista.</p></li>
+<li><p>Regla de Laplace (Laplace, finales s. XVIII).</p></li>
+<li><p>Definición formal o axiomática (Kolmogorov, 1933).</p></li>
+</ul>
+<section id="método-frecuentista" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="método-frecuentista"><span class="header-section-number">5.4.1</span> Método frecuentista</h3>
+<p>Este método consiste en identificar la probabilidad de un suceso con la frecuencia relativa con la que éste ocurre al repetir el experimento aleatorio reiteradas veces.</p>
+<p>Supongamos que realizamos un experimento aleatorio repetidamente y que, en cada repetición, observamos si ocurre o no un suceso <span class="math inline">\(A\)</span>. Definimos la probabilidad de <span class="math inline">\(A\)</span>, denotada por <span class="math inline">\(\mathbf{P}(A)\)</span>, como el número al que se aproxima el cociente</p>
+<p><span class="math display">\[
+\frac{\mbox{``Número de veces que ocurre A''}}{\mbox{``Número de veces que se ha repetido el experimento''}},
+\]</span></p>
+<p>cuando el número de repeticiones crece indefinidamente.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tenemos una urna con 100 bolas: 30 negras y 70 blancas. Se extrae una bola al azar (con reposición) y consideramos el suceso</p>
+<p><span class="math display">\[A=\mbox{``Sale bola negra''}.\]</span></p>
+<p>Para estimar la probabilidad de <span class="math inline">\(A\)</span>, procedemos del siguiente modo:</p>
+<ol type="1">
+<li><p>Extraemos una bola, observamos su color y la devolvemos a la urna.</p></li>
+<li><p>Repetimos el proceso sucesivamente, y para cada número de repeticiones <span class="math inline">\(n\)</span> (<span class="math inline">\(n=1,2,3,\ldots\)</span>), tomamos nota de la frecuencia relativa <span class="math display">\[\frac{m}{n},\]</span> siendo <span class="math inline">\(m\)</span> el número de veces que ha ocurrido el suceso <span class="math inline">\(A\)</span>.</p></li>
+</ol>
+<p>A medida que <span class="math inline">\(n\)</span> aumenta, observamos a qué valor se aproxima dicha frecuencia relativa. Ese valor se toma como la probabilidad <span class="math inline">\(\mathbf{P}(A)\)</span>.</p>
+<p>Tras 1000 extracciones se obtuvieron, entre otros, los siguientes resultados:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>n</th>
+<th>color</th>
+<th>m</th>
+<th>m/n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>N</td>
+<td>1</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>1</td>
+<td>0.500</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>N</td>
+<td>2</td>
+<td>0.667</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>N</td>
+<td>3</td>
+<td>0.750</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>N</td>
+<td>4</td>
+<td>0.800</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>B</td>
+<td>6</td>
+<td>0.600</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>N</td>
+<td>32</td>
+<td>0.320</td>
+</tr>
+<tr class="even">
+<td>500</td>
+<td>B</td>
+<td>149</td>
+<td>0.298</td>
+</tr>
+<tr class="odd">
+<td>1000</td>
+<td>N</td>
+<td>305</td>
+<td>0.305</td>
+</tr>
+</tbody>
+</table>
+<p>Representando gráficamente los valores <span class="math inline">\(n\)</span> (abscisas) y <span class="math inline">\(m/n\)</span> ordenadas tenemos los siguiente.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TemaProbabilidad_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Al representar gráficamente la frecuencia relativa frente al número de extracciones, observamos que esta se aproxima progresivamente a <span class="math inline">\(0.3\)</span>. Esto indica que <span class="math inline">\(\textbf{P}(A)=0.3\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="regla-de-laplace" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="regla-de-laplace"><span class="header-section-number">5.4.2</span> Regla de Laplace</h3>
+<p>En la práctica, no es posible repetir un experimento un número infinito de veces, por lo que el método frecuentista solo permite estimar probabilidades.</p>
+<p>Sin embargo, en experimentos con un número finito de resultados <span class="math display">\[\Omega=\{s_1,s_2,\ldots,s_n\},\]</span> cuando todos ellos son <strong>igualmente probables</strong> (es decir, tenemos el mismo grado de certeza de que ocurra cualquiera de ellos), podemos aplicar un método exacto conocido como <strong>regla de Laplace</strong>.</p>
+<p>La regla de Laplace se aplica como sigue. Si <span class="math inline">\(A\)</span> es un suceso, definimos la probabilidad de <span class="math inline">\(A\)</span>, <span class="math inline">\(\textbf{P}(A)\)</span>, como</p>
+<p><span class="math display">\[
+\textbf{P}(A)=\frac{\mbox{Número de elementos de A}}{\mbox{Número de elementos de }\Omega}.
+\]</span></p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al lanzar una moneda dos veces, el espacio muestral es</p>
+<p><span class="math display">\[
+\Omega=\{cc,cx,xc,xx\}.
+\]</span></p>
+<p>Los cuatro resultados del espacio muestral son igualmente probables. Podemos, por tanto, aplicar la regla de Laplace. La probabilidad de <span class="math inline">\(A=\mbox{``Sacar exactamente una cara''}=\{cx,xc\}\)</span> es</p>
+<p><span class="math display">\[
+\textbf{P}(A)=\frac{2}{4}=0.5,
+\]</span></p>
+<p>ya que <span class="math inline">\(A\)</span> tiene dos elementos y <span class="math inline">\(\Omega\)</span> tiene cuatro elementos.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Volvamos al ejemplo de la urna con 30 bolas negras y 70 blancas.</p>
+<p>Hacemos el experimento de extraer una bola y consideramos el suceso</p>
+<p><span class="math display">\[
+A=\mbox{``Sale bola negra''}.
+\]</span></p>
+<p>Todas las bolas tienen la misma probabilidad de ser extraídas, por lo que la regla de Laplace es aplicable. El espacio muestral tiene 100 elementos y el suceso <span class="math inline">\(A\)</span> tiene 30, luego <span class="math display">\[
+\textbf{P}(A)=\frac{30}{100}=0.3.
+\]</span> Este valor coincide con el obtenido mediante el método frecuentista.</p>
+</div>
+</div>
+</section>
+<section id="definición-axiomática-de-probabilidad" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="definición-axiomática-de-probabilidad"><span class="header-section-number">5.4.3</span> Definición axiomática de probabilidad</h3>
+<p>Los métodos expuestos anteriormente para calcular probabilidades no son suficientes para abarcar todos los experimentos aleatorios. El método frecuentista se basa en repetir un experimento muchas veces y observar la frecuencia relativa. Sin embargo, hay situaciones en las que este procedimiento no es viable: algunos experimentos no pueden repetirse (por ejemplo, evaluar la probabilidad de que cierto terremoto ocurra el próximo año), otros no son reproducibles en condiciones idénticas, o simplemente requieren un número de repeticiones tan grande que el enfoque resulta impracticable. Por otra parte, la regla de Laplace solo se puede aplicar cuando existe un número finito de resultados igualmente probables, lo cual rara vez ocurre en la práctica.</p>
+<p>En esencia, cualquier procedimiento de asignación de probabilidades consiste en asociar a cada suceso un número <span class="math inline">\(\textbf{P}(A)\)</span> comprendido entre 0 y 1. El matemático ruso Andréi Kolmogórov advirtió que esta asignación debía satisfacer un conjunto mínimo de reglas –o axiomas– para que la probabilidad describiera de forma coherente el comportamiento de los experimentos aleatorios. Además, dichos axiomas resultan suficientes para garantizar un análisis riguroso de la probabilidad.</p>
+<p>Esto conduce a la necesidad de una definición formal del concepto.</p>
+<div id="def-probabilidad" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 5.1 (Kolmogorov, 1933)</strong></span> La probabilidad, <span class="math inline">\(\textbf{P}\)</span>, es una función que asigna a cada suceso <span class="math inline">\(A\)</span> un número <span class="math inline">\(\textbf{P}(A)\)</span> verificando los siguientes axiomas:</p>
+<ol type="1">
+<li><p>Para cualquier suceso <span class="math inline">\(A\)</span>, <span class="math inline">\(\textbf{P}(A)\ge 0\)</span>,</p></li>
+<li><p><span class="math inline">\(\textbf{P}(\Omega)=1\)</span>,</p></li>
+<li><p>Si <span class="math inline">\(A\cap B=\emptyset\)</span> (es decir, <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son incompatibles), entonces <span class="math inline">\(\textbf{P}(A\cup B)=\textbf{P}(A)+\textbf{P}(B)\)</span>.</p></li>
+</ol>
+</div>
+</section>
+<section id="propiedades-de-la-probabilidad" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="propiedades-de-la-probabilidad"><span class="header-section-number">5.4.4</span> Propiedades de la probabilidad</h3>
+<p>A partir de las propiedades anteriores, es posible deducir nuevas propiedades que verifica la probabilidad. En la siguiente proposición recogemos algunas de las más importantes.</p>
+<div id="prp-probabilidad" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposición 5.1 (Propiedades de la probabilidad)</strong></span> Para cualesquiera dos sucesos A y B se verifica:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\textbf{P}(\emptyset)=0\)</span>,</p></li>
+<li><p>Si <span class="math inline">\(A\)</span> está incluido en <span class="math inline">\(B\)</span>, entonces <span class="math inline">\(\textbf{P}(A)\le\textbf{P}(B)\)</span>.</p></li>
+<li><p>Regla del complementario: <span class="math inline">\(\textbf{P}(\bar A)=1-\textbf{P}(A)\)</span>.</p></li>
+<li><p>Regla de la unión: <span class="math inline">\(\textbf{P}(A\cup B)=\textbf{P}(A)+\textbf{P}(B)-\textbf{P}(A\cap B)\)</span>.</p></li>
+</ol>
+</div>
+<p>Estas propiedades son muy útiles en el cálculo de probabilidades. Veamos algunos ejemplos:</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Retomemos el ejemplo de lanzar un dado negro y otro rojo juntos. Calcula la probabilidad <span class="math inline">\(\textbf{P}(A)\)</span> del suceso <span class="math display">\[
+A = \mbox{``Alguno de los resultados es mayor que 2''}.
+\]</span></p>
+<p><strong>Solución:</strong> En este caso la regla de Laplace es aplicable. Sin embargo, <span class="math inline">\(A\)</span> contiene muchos elementos, por lo que es tedioso contarlos.</p>
+<p>Es más sencillo considerar el complementario <span class="math display">\[
+\begin{aligned}
+\bar{A} &amp;= \text{``Ninguno de los resultados es mayor que 2''} \\
+        &amp;= \{(1,1),(1,2),(2,1),(2,2)\}.
+\end{aligned}
+\]</span></p>
+<p>Para dicho complementario se verifica <span class="math display">\[
+\textbf{P}(\bar A)=\frac{4}{36}=\frac{1}{9}=0.1111.
+\]</span></p>
+<p>De esta manera, usando la regla del complementario: <span class="math display">\[
+\textbf{P}(A)=1-\textbf{P}(\bar A)=1-0.8889.
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se saca una carta al azar de una baraja española de 40 cartas. Calcula la probabilidad de sacar una figura o un oro (o ambas cosas).</p>
+<p><strong>Solución:</strong> Sean <span class="math display">\[
+\begin{aligned}
+A &amp;= \mbox{``Sacar figura''},\\
+B &amp;= \mbox{``Sacar oro''}.
+\end{aligned}
+\]</span> Usando la regla de la unión, obtenemos la probabilidad pedida: <span class="math display">\[
+\begin{aligned}
+\textbf{P}(A \cup B) &amp;= \textbf{P}(A) + \textbf{P}(B) - \textbf{P}(A \cap B) = \frac{12}{40} + \frac{10}{40} - \frac{3}{40} \\
+&amp;= \frac{12 + 10 - 3}{40} = \frac{19}{40} = 0.475.
+\end{aligned}
+\]</span></p>
+<center>
+<img src="baraja.png" class="img-fluid" style="width:5cm">
+</center>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se saca una carta al azar de una baraja española de 40 cartas. Calcula la probabilidad de no sacar ni figura ni oro.</p>
+<p><strong>Solución:</strong> Nos están pidiendo la probabilidad complementaria del ejemplo anterior. Es decir, la probabilidad pedida es</p>
+<p><span class="math display">\[
+\textbf{P}(\overline{A \cup B})=1-\textbf{P}(A \cup B)=1-\frac{19}{40}=\frac{21}{40}=0.525.
+\]</span></p>
+</div>
+</div>
+</section>
+</section>
+<section id="probabilidad-condicionada" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="probabilidad-condicionada"><span class="header-section-number">5.5</span> Probabilidad condicionada</h2>
+<p>Supongamos que se saca una carta al azar de una baraja española.</p>
+<center>
+<img src="baraja.png" class="img-fluid" style="width:5cm">
+</center>
+<p>La probabilidad del suceso <span class="math display">\[
+A = \mbox{``Sacar sota''}.
+\]</span></p>
+<p>es</p>
+<p><span class="math display">\[
+\textbf{P}(A)=\frac{4}{40}=0.1.
+\]</span> Ahora, supongamos que, antes de ver la carta extraída, nos dicen que la carta obtenida es una figura.</p>
+<p>Al tener información adicional, debemos tener en cuenta menos casos, obteniendo una nueva probabilidad para <span class="math inline">\(A\)</span> de <span class="math inline">\(\frac{4}{12} = 0.3333\)</span>.</p>
+<p>El concepto de <strong>probabilidad condicionada</strong> indica la probabilidad de un suceso cuando se sabe que otro ha ocurrido, que es la situación que tenemos en el ejemplo anterior.</p>
+<p>Formalmente, dicha probabilidad se define como sigue.</p>
+<div id="def-probCond" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 5.2 (Probabilidad condicionada)</strong></span> Dados dos sucesos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> definimos la probabilidad de <span class="math inline">\(A\)</span> <strong>condicionada</strong> por <span class="math inline">\(B\)</span>, denotada por <span class="math inline">\(\textbf{P}(A|B)\)</span>, mediante</p>
+<p><span class="math display">\[
+\textbf{P}(A|B)
+=\frac{\textbf{P}(A\cap B)}{\textbf{P}(B)}.
+\]</span></p>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el ejemplo anterior, para los sucesos <span class="math display">\[
+A = \mbox{``Sacar una sota''},\quad
+B = \mbox{``Sacar figura''},
+\]</span></p>
+<p>tenemos</p>
+<p><span class="math display">\[
+\textbf{P}(A|B) = \frac{\textbf{P}(A\cap B)}{\textbf{P}(B)} = \frac{{4}/{40}}{{12}/{40}} = \frac{4}{12} = 0.3333.
+\]</span></p>
+</div>
+</div>
+<p>Un error frecuente es confundir la probabilidad condicional <span class="math inline">\(\textbf{P}(A|B)\)</span> con su inversa <span class="math inline">\(\textbf{P}(B|A)\)</span>. Este error es conocido como <strong>paradoja del fiscal</strong> (en inglés, Prosecutor’s Fallacy).</p>
+<p>Veamos un ejemplo:</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo (Falacia del fiscal)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se ha cometido un asesinato en un pueblo y se está investigando a un sospechoso, el cual es pelirrojo.</p>
+<p>Un cabello hallado en la escena del crimen prueba que el asesino era pelirrojo.</p>
+<p>En el pueblo, el <strong>0.1% de la población es pelirroja</strong>.</p>
+<p>El fiscal razona del siguiente modo: dado que la probabilidad de que una persona sea pelirroja es solo del 0.1%, como el sospechoso es pelirrojo, la probabilidad de que haya cometido el crimen es, por tanto, de 0.1%.</p>
+<p>¿Es correcto este razonamiento? Veámoslo.</p>
+<p>Consideremos los sucesos: <span class="math display">\[
+C = \text{``el sospechoso es culpable''}, \qquad
+E = \text{``el asesino es pelirrojo''}.
+\]</span></p>
+<p>Sabemos que: <span class="math display">\[
+\mathbf{P}(E \mid \bar{C}) = 0.1\% = 0.001,
+\]</span> es decir, si el sospechoso es inocente, la probabilidad de que el verdadero asesino sea pelirrojo coincide con la proporción de pelirrojos en la población.</p>
+<p>Esto es correcto. Sin embargo, la probabilidad relevante para decidir sobre la culpabilidad del sospechoso es <span class="math display">\[
+\mathbf{P}(\bar{C} \mid E),
+\]</span> no ((E {C})). Confundir estas dos probabilidades es el error conocido como la <strong>falacia del fiscal</strong>.</p>
+<p>Supongamos que en el pueblo hay 5000 personas. Dado que el 0.1% de la población es pelirroja, el número de pelirrojos es <span class="math inline">\(5000\cdot 0.001 = 5\)</span>.</p>
+<p>Suponiendo que todas las personas del pueblo tienen la misma probabilidad de ser el asesino, y sabiendo que el asesino es pelirrojo, cualquiera de esos cinco pelirrojos podría ser culpable con igual probabilidad.</p>
+<p>De ellos, solo uno es el sospechoso. Por tanto, la probabilidad de que el sospechoso sea culpable es: <span class="math display">\[
+\mathbf{P}(C \mid E) = \frac{1}{5} = 0.2,
+\]</span> muy superior al <span class="math inline">\(0.001\)</span> propuesto por el fiscal.</p>
+<p>Obsérvese que en este cálculo <strong>no se han tenido en cuenta otras pruebas</strong> (motivo, coartada, antecedentes, etc.). Si existieran más indicios incriminatorios, la probabilidad de culpabilidad podría ser aún mayor.</p>
+</div>
+</div>
+<section id="regla-del-producto" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="regla-del-producto"><span class="header-section-number">5.5.1</span> Regla del producto</h3>
+<p>Usando la definición de probabilidad condicionada, obtenemos la siguiente fórmula para la probabilidad de la intersección de sucesos <span class="math display">\[
+\textbf{P}(A\cap B) = \textbf{P}(B)\textbf{P}(A|B).
+\]</span> Dicha relación se conoce como <strong>regla del producto</strong>.</p>
+<p>Veamos un ejemplo.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Supongamos que tenemos una urna con 80 bolas blancas y 20 bolas rojas. Supongamos que extraemos al azar dos bolas consecutivamente y sin reemplazamiento. Calcule las siguientes probabilidades:</p>
+<ol type="1">
+<li><p>La primera bola extraída es roja.</p></li>
+<li><p>La segunda bola extraída es roja, si sabemos que la primera bola fue roja.</p></li>
+<li><p>Las dos bolas extraídas son rojas.</p></li>
+</ol>
+<p><strong>Solución:</strong> Consideremos los sucesos <span class="math display">\[
+\begin{aligned}
+R_1 &amp;= \mbox{``La primera bola extraída es roja''},\\
+R_2 &amp;= \mbox{``La segunda bola extraída es roja''}.
+\end{aligned}
+\]</span> La primera probabilidad pedida es <span class="math inline">\(\textbf{P}(R_1)\)</span>. Usando la regla de Laplace tenemos <span class="math display">\[
+\textbf{P}(R_1) = \frac{20}{100} = 0.2,
+\]</span> ya que hay 20 posibilidades de escoger una bola roja entre 100 bolas.</p>
+<p>La segunda probabilidad pedida es <span class="math inline">\(\textbf{P}(R_2|R_1)\)</span>. Al haber extraído una bola roja en la primera extracción, en la urna quedarán 19 bolas rojas de un total de 99. Por tanto, <span class="math display">\[
+\textbf{P}(R_2|R_1) = \frac{19}{99} = 0.1919.
+\]</span></p>
+<p>Finalmente, la última probabilidad a calcular es <span class="math inline">\(\textbf{P}(R_1 \cap R_2)\)</span>. Usando la regla del producto tenemos <span class="math display">\[
+\textbf{P}(R_1 \cap R_2) = \textbf{P}(R_1)\textbf{P}(R_2|R_1)
+= 0.2 \cdot 0.1919 = 0.0384.
+\]</span></p>
+</div>
+</div>
+</section>
+</section>
+<section id="teorema-de-la-probabilidad-total" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="teorema-de-la-probabilidad-total"><span class="header-section-number">5.6</span> Teorema de la probabilidad total</h2>
+<p>Supongamos, como en el ejemplo anterior, una urna con 80 bolas blancas y 20 bolas rojas, donde se extraen dos bolas consecutivamente sin reemplazamiento. Nos preguntamos ahora por la probabilidad del suceso: <span class="math display">\[
+R_2 = \mbox{``La segunda bola extraída es roja''.}
+\]</span></p>
+<p>Para la primera extracción sólo hay dos posibles sucesos, de los cuales sólo puede ocurrir uno: <span class="math display">\[
+\begin{aligned}
+R_1 &amp;= \mbox{``La primera bola extraída es roja''},\\
+B_1 &amp;= \mbox{``La primera bola extraída es blanca''}.
+\end{aligned}
+\]</span> Esto da lugar al siguiente árbol de posibilidades para las que ocurre <span class="math inline">\(R_2\)</span>:</p>
+<center>
+<img src="arbol2.png" class="img-fluid" style="width:15cm">
+</center>
+<p>La primera rama corresponde al suceso <span class="math inline">\(R_1 \cap R_2\)</span> y la segunda a <span class="math inline">\(B_1 \cap R_2\)</span>. La unión de ambos sucesos, los cuales son incompatibles, da el suceso <span class="math inline">\(R_2\)</span>. Por tanto, <span class="math display">\[
+\begin{aligned}
+\textbf{P}(R_2) &amp;= \textbf{P}\Big((R_1 \cap R_2) \cup (B_1 \cap R_2)\Big) = \textbf{P}(R_1 \cap R_2) + \textbf{P}(B_1 \cap R_2) \\
+&amp;= \textbf{P}(R_1)\textbf{P}(R_2|R_1) + \textbf{P}(B_1)\textbf{P}(R_2|B_1) =
+\frac{20}{100} \cdot \frac{19}{99} + \frac{80}{100} \cdot \frac{20}{99} = 0.2,
+\end{aligned}
+\]</span> donde hemos aplicado dos veces la regla del producto.</p>
+<p>En el anterior ejemplo los sucesos <span class="math inline">\(R_1,B_1\)</span> cubren todas las posibilidades (siempre ocurre alguno) y son incompatibles (no pueden ocurrir a la vez).</p>
+<p>En general, diremos que una familia de sucesos <span class="math inline">\(A_1,A_2,A_3,\ldots,A_n\)</span> es una <strong>partición</strong> del espacio muestral si:</p>
+<ol type="1">
+<li><p>Siempre ocurre algún <span class="math inline">\(A_i\)</span> (es decir, <span class="math inline">\(\Omega=A_1\cup A_2 \cup \ldots \cup A_n\)</span>),</p></li>
+<li><p>Son incompatibles dos a dos (es decir, <span class="math inline">\(A_i\cap A_j=\emptyset\)</span> si <span class="math inline">\(i\neq j\)</span>).</p></li>
+</ol>
+<p>El método empleado en el ejemplo anterior puede generalizar se a cualquier partición del espacio muestral. Más concretamente, tenemos lo siguiente:</p>
+<div id="thm-probabilidadTotal" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 5.1 (de la probabilidad total)</strong></span> Dado un suceso <span class="math inline">\(B\)</span> y una partición <span class="math inline">\(A_1,A_2,A_3,\ldots,A_n\)</span> del espacio muestral, se verifica <span class="math display">\[
+\textbf{P}(B)=\sum_{i=1}^n \textbf{P}(A_i)\textbf{P}(B|A_i).
+\]</span></p>
+</div>
+<p>Al igual que en el ejemplo anterior con las bolas blancas y rojas, podemos visualizar el teorema anterior con un árbol de posibilidades. Por ejemplo, supongamos que tenemos el suceso <span class="math inline">\(B\)</span> y una partición <span class="math inline">\(A_1,A_2,A_3\)</span> del espacio muestral, tenemos el siguiente árbol</p>
+<center>
+<img src="arbol.png" class="img-fluid" style="width:15cm">
+</center>
+<p>De acuerdo al teorema de la probabilidad total, calcularemos la probailidad de <span class="math inline">\(B\)</span> mediante: <span class="math display">\[
+\textbf{P}(B)=\textbf{P}(A_1)\textbf{P}(B|A_1)+
+\textbf{P}(A_2)\textbf{P}(B|A_2)+
+\textbf{P}(A_3)\textbf{P}(B|A_3).
+\]</span></p>
+<p>Veamos un ejemplo:</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se dispone de tres monedas. Dos normales, y una falsa con dos caras. Se coge una moneda al azar, se lanza, y se observa el resultado. ¿Cuál es la probabilidad de sacar cara?</p>
+<p><strong>Solución:</strong> Tenemos el siguiente árbol de posibilidades</p>
+<center>
+<img src="moneda.png" class="img-fluid" style="width:15cm">
+</center>
+<p><span class="math display">\[
+\textbf{P}(\mbox{Cara})=\frac{1}{3}\cdot\frac{1}{2}+\frac{1}{3}\cdot\frac{1}{2}+\frac{1}{3}\cdot{1}=\frac{2}{3}=0.6667.
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="regla-de-bayes" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="regla-de-bayes"><span class="header-section-number">5.7</span> Regla de Bayes</h2>
+<p>Mientras que el teorema de la probabilidad total permite calcular la probabilidad de un suceso <span class="math inline">\(B\)</span> mediante una partición del espacio muestral, el teorema de Bayes permite invertir el cálculo y determinar la probabilidad de los elementos de la partición dado que <span class="math inline">\(A\)</span> ha ocurrido.</p>
+<p>Concretemente tenemos lo siguiente:</p>
+<div id="thm-Bayes" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 5.2 (Teorema (Regla de Bayes))</strong></span> Sea <span class="math inline">\(B\)</span> un suceso y <span class="math inline">\(A_1, A_2, \ldots, A_n\)</span> una partición del espacio muestral.<br>
+Entonces, para cualquier <span class="math inline">\(i\)</span>, se verifica: <span class="math display">\[
+\textbf{P}(A_i|B) = \frac{\textbf{P}(A_i)\cdot \textbf{P}(B|A_i)}{\textbf{P}(B)}=
+\frac{\textbf{P}(A_i)\cdot\textbf{P}(B|A_i)}{\sum_{j=1}^n \textbf{P}(A_j)\cdot\textbf{P}(B|A_j)}  .
+\]</span></p>
+</div>
+<p>Observa que la segunda igualdad hemos reemplazado <span class="math inline">\(\textbf{P}(B)\)</span> por su expresión proporcionada por el teorema de la probabilidad total.</p>
+<p>Veamos el uso de la Regla de Bayes en un ejemplo:</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se dispone de tres monedas. Dos normales, y una falsa con dos caras. Se coge una moneda al azar, se lanza, y se observa el resultado.</p>
+<p>Si se observa cara, ¿cuál es la probabilidad de que la moneda escogida sea la falsa?</p>
+<p><strong>Solución:</strong> Tenemos el siguiente árbol de posibilidades:</p>
+<center>
+<img src="moneda.png" class="img-fluid" style="width:15cm">
+</center>
+<p>Aplicando la Regle de Bayes <span class="math display">\[
+\textbf{P}(\mbox{Moneda 3}|\mbox{Cara})=
+\frac{\frac{1}{3}\cdot{1}}{\frac{1}{3}\cdot\frac{1}{2}+\frac{1}{3}\cdot\frac{1}{2}+\frac{1}{3}\cdot{1}}=\frac{1/3}{2/3}=\frac{1}{2}.
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="aplicación-de-la-regla-de-bayes-al-análisis-de-pruebas-forenses-en-criminología" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="aplicación-de-la-regla-de-bayes-al-análisis-de-pruebas-forenses-en-criminología"><span class="header-section-number">5.8</span> Aplicación de la Regla de Bayes al análisis de pruebas forenses en criminología</h2>
+<p>El teorema de Bayes tiene numerosas aplicaciones prácticas, especialmente en contextos donde se va actualizando la información disponible a medida que aparecen nuevas evidencias.</p>
+<p>Uno de estos contextos es la investigación criminal, donde Bayes permite actualizar la probabilidad de culpabilidad de un sospechoso conforme se incorporan nuevas pruebas forenses.</p>
+<p>A continuación, veremos un ejemplo ilustrativo de cómo aplicar el teorema de Bayes al análisis de pruebas en un caso de homicidio.</p>
+<p><strong>Escena del crimen:</strong> El cuerpo de una mujer de 22 años es encontrado apuñalado hasta la muerte en su hogar, en el oeste de Massachusetts. Hay signos evidentes de lucha en la habitación y en el cuerpo, pero no hay evidencia de agresión sexual. Se encuentran manchas de sangre en el área donde se descubrió el cuerpo.</p>
+<p>Una investigación preliminar del entorno señala a la pareja sentimental de la víctima como principal sospechoso.</p>
+<p>Sin tener en cuenta ninguna prueba forense adicional, los investigadores estiman inicialmente que la probabilidad de que el sospechoso sea culpable es</p>
+<p><span class="math display">\[
+\textbf{P}(C)=0.5.
+\]</span></p>
+<p>En lo que sigue, iremos incorporando progresivamente las siguientes evidencias obtenidas tras una inspección detallada de la escena del crimen:</p>
+<ol type="1">
+<li><p>Evidencia 1: Sangre en la escena del crimen.</p></li>
+<li><p>Evidencia 2: Huellas dactilares.</p></li>
+<li><p>Evidencia 3: El asesino es zurdo.</p></li>
+</ol>
+<p>Tras cada evidencia, analizaremos como se modifica la probabilidad de culpabilidad al ir teniendo en cuanta las diferentes evidencias usando la regla de Bayes.</p>
+<p><strong>Evidencia 1: Sangre en la escena del crimen</strong></p>
+<p>Las pruebas realizadas indican que la víctima tenía tipo de sangre A. Sin embargo, la sangre encontrada en la escena del crimen corresponde a un individuo con <strong>tipo de sangre O</strong>.</p>
+<p>Se sabe que el sospechoso tiene tipo de sangre O, por lo que no queda descartado como posible fuente de la sangre.</p>
+<p>Un experto indica que aproximadamente el 45% de la población de Estados Unidos tiene sangre de tipo O. Por tanto,</p>
+<p><span class="math display">\[
+\textbf{P}(E_1|\bar{C})=0.45,
+\]</span> donde</p>
+<p><span class="math display">\[
+E_1=\mbox{``El asesino tiene sangre de tipo O''}.
+\]</span></p>
+<p>Como el sospechoso tiene sangre de tipo O. Si el sospechoso es culpable entonces el asesino es necesariamente zurdo. Por tanto,</p>
+<p><span class="math display">\[
+\textbf{P}(E_1|C)=1.
+\]</span></p>
+<p>Teniendo en cuenta las dos posibilidades: culpabilidad o no culpabilidad, tenemos el siguiente digrama de árbol:</p>
+<center>
+<img src="arbolE1.png" class="img-fluid" style="width:15cm">
+</center>
+<p>Aplicando la regla de Bayes:</p>
+<p><span class="math display">\[
+\textbf{P}(C|E_1)=\frac{\textbf{P}(E_1|C)\textbf{P}(C)}{\textbf{P}(E_1|C)\textbf{P}(C)+\textbf{P}(E_1|\bar{C})\textbf{P}(\bar{C})}=\frac{0.5\cdot 1}{0.5\cdot 1+0.5\cdot 0.45}=0.6897.
+\]</span></p>
+<p>Tras considerar la primera evidencia, actualizamos la probabilidad de culpabilidad a <span class="math display">\[
+\textbf{P}(C):=0.6897.
+\]</span></p>
+<p><strong>Evidencia 2: Huellas dactilares</strong></p>
+<p>Se analiza una impresión parcial encontrada en el arma homicida del dedo índice y se compara con las huellas del sospechoso. El análisis forense muestra que las huellas coinciden.</p>
+<p>Un modelo forense computacional estima que solo el 21% de la población mundial presenta coincidencia con una impresión parcial de ese tipo. Por tanto,</p>
+<p><span class="math display">\[
+\textbf{P}(E_2|\bar{C})=0.21.
+\]</span> donde</p>
+<p><span class="math display">\[
+E_2=\mbox{``El asesino presenta el tipo de huella encontrado''}.
+\]</span></p>
+<p>La huella encontrada coincide con la del sospechoso, por tanto,</p>
+<p><span class="math display">\[
+\textbf{P}(E_2|C)=1.
+\]</span></p>
+<p>Esto da lugar al siguiente digrama de árbol:</p>
+<center>
+<img src="arbolE2.png" class="img-fluid" style="width:15cm">
+</center>
+<p>Aplicando de nuevo Bayes (usando la probabilidad actualizada anterior):</p>
+<p><span class="math display">\[
+\textbf{P}(C|E_2)=\frac{\textbf{P}(E_2|C)\textbf{P}(C)}{\textbf{P}(E_2|C)\textbf{P}(C)+\textbf{P}(E_2|\bar{C})\textbf{P}(\bar{C})}=\frac{0.69\cdot 1}{0.69\cdot 1+0.31\cdot 0.21}=0.91.
+\]</span> Tras la segunda evidencia, actualizamos la probabilidad a</p>
+<p><span class="math display">\[
+\textbf{P}(C)=0.91.
+\]</span></p>
+<p><strong>Evidencia 3: El asesino es zurdo</strong></p>
+<p>El examen de las heridas, la forma en que se produjeron y la orientación de la huella dactilar indican de forma inequívoca que el asesino es zurdo.</p>
+<p>El sospechoso resulta ser también zurdo, por lo que esta característica es compatible con la hipótesis de culpabilidad.</p>
+<p>Se estima que aproximadamente el <strong>10.6 % de la población mundial es zurda</strong>. Por tanto,</p>
+<p><span class="math display">\[
+\textbf{P}(E_3|\bar{C})=0.106,
+\]</span> donde</p>
+<p><span class="math display">\[
+E_3=\mbox{``El asesino es zurdo''}.
+\]</span> Si el sospechoso es culpable, necesariamente el asesino es zurdo, por tanto:</p>
+<p><span class="math display">\[
+\textbf{P}(E_3|C)=1.
+\]</span></p>
+<p>En este caso, tenemos el siguiente digrama de árbol:</p>
+<center>
+<img src="arbolE3.png" class="img-fluid" style="width:15cm">
+</center>
+<p>Aplicando Bayes una última vez:</p>
+<p><span class="math display">\[
+\textbf{P}(C|E_3)=\frac{\textbf{P}(E_3|C)\textbf{P}(C)}{\textbf{P}(E_3|C)\textbf{P}(C)+\textbf{P}(E_3|\bar{C})\textbf{P}(\bar{C})}=\frac{0.91\cdot 1}{0.91\cdot 1+0.09\cdot 0.106}=0.99.
+\]</span></p>
+<p>Tras considerar todas las evidencias, obtenemos</p>
+<p><span class="math display">\[
+\textbf{P}(C)=0.99
+\]</span></p>
+<p>lo que constituye evidencia abrumadora de que el sospechoso es el asesino.</p>
+<section id="cuantificación-de-las-evidencias-forenses-mediante-razones-de-verosimilitud" class="level3" data-number="5.8.1">
+<h3 data-number="5.8.1" class="anchored" data-anchor-id="cuantificación-de-las-evidencias-forenses-mediante-razones-de-verosimilitud"><span class="header-section-number">5.8.1</span> Cuantificación de las evidencias forenses mediante razones de verosimilitud</h3>
+<p>Cuando trabajamos con el teorema de Bayes, es habitual expresar los resultados en términos de probabilidades tal como hemos hecho en el análisis anterior.<br>
+Sin embargo, en el análisis forense resulta más informativo y más cómodo trabajar con razones de probabilidad (“odds” en inglés).</p>
+<p>Dado un suceso <span class="math inline">\(C\)</span> (por ejemplo, “el sospechoso es culpable”), definimos la <strong>razón de probabilidad</strong> de <span class="math inline">\(C\)</span> como</p>
+<p><span class="math display">\[
+\mathrm{Odds}(C)=\frac{\textbf{P}(C)}{\textbf{P}(\bar{C})}=\frac{\textbf{P}(C)}{1-\textbf{P}(C)}.
+\]</span></p>
+<p>Las razones de probabilidad comparan directamente la plausibilidad de la hipótesis <span class="math inline">\(C\)</span> (por ejemplo, “el sospechos es culpable”) frente a su alternativa <span class="math inline">\(\bar{C}\)</span> (por ejemplo, “el sospechos es inocente”):</p>
+<ul>
+<li><p><span class="math inline">\(\mathrm{Odds}(C)=1\)</span>: ambas hipótesis son igualmente probables.</p></li>
+<li><p><span class="math inline">\(\mathrm{Odds}(C)&gt;1\)</span>: <span class="math inline">\(C\)</span> es más probable que <span class="math inline">\(\bar{C}\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathrm{Odds}(C)&lt;1\)</span>: <span class="math inline">\(C\)</span> es menos probable que <span class="math inline">\(\bar{C}\)</span>.</p></li>
+</ul>
+<p>Estas magnitudes permiten interpretar con claridad cómo cada evidencia refuerza o debilita una hipótesis.</p>
+<p>Por ejemplo, si <span class="math inline">\(\textbf{P}(C)=0.75\)</span>, entonces <span class="math display">\[
+\mathrm{Odds}(C)=\frac{0.75}{0.25}=3,
+\]</span> lo que significa que la hipótesis <span class="math inline">\(C\)</span> es tres veces más plausible que su alternativa.</p>
+<p>Por otro lado, dado el valor de la razón de probabilidad, podemos recuperar el valor de la probabilidad, mediante:</p>
+<p><span class="math display">\[
+\textbf{P}(C)=\frac{\mathrm{Odds}(C)}{1+\mathrm{Odds}(C)}.
+\]</span> En nuestro caso particular, en el que <span class="math inline">\(\mathrm{Odds}(C)=3\)</span>, recuperamos el valor de la probabilidad</p>
+<p><span class="math display">\[
+\textbf{P}(C)=\frac{3}{4}=0.75.
+\]</span></p>
+<p>Dada una evidencia <span class="math inline">\(E\)</span>, definimos la <strong>razón de verosimilitud</strong> como <span class="math display">\[
+\Lambda(E)=\frac{\textbf{P}(E\mid C)}{\textbf{P}(E\mid \bar C)}.
+\]</span> La razón de verosimilitudes mide cuántas veces la evidencia es más compatible con la hipótesis <span class="math inline">\(C\)</span> que con <span class="math inline">\(\bar C\)</span>. A mayor valor de <span class="math inline">\(\Lambda(E)\)</span> mayor es la fuerza probatoria de la evidencia <span class="math inline">\(E\)</span> respaldando la hipótesis <span class="math inline">\(C\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\Lambda(E)=1\)</span>: la evidencia <span class="math inline">\(E\)</span> no favorece a ninguna de las dos hipótesis.</p></li>
+<li><p><span class="math inline">\(\Lambda(E)&gt;1\)</span>: la evidencia <span class="math inline">\(E\)</span> apoya la culpabilidad <span class="math inline">\(C\)</span>.</p></li>
+<li><p><span class="math inline">\(\Lambda(E)&lt;1\)</span>: la evidencia <span class="math inline">\(E\)</span> apoya la inocencia <span class="math inline">\(\bar{C}\)</span>.</p></li>
+</ul>
+<p>Ahora bien, como consecuencia inmediata de la regla de Bayes tenemos:</p>
+<p><span class="math display">\[
+\mathrm{Odds}(C\mid E)=\mathrm{Odds}(C)\cdot
+\Lambda(E).
+\]</span></p>
+<p>Cada nueva evidencia multiplica las odds previas por su razón de verosimilitudes.</p>
+<p>En nuestro ejemplo del crimen de Massachusetts teníamos las siguientes razones de verosimilitud para las evidencias <span class="math inline">\(E_1,E_2,E_2\)</span>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 22%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Evidencia</th>
+<th>Descripción</th>
+<th style="text-align: center;"><span class="math inline">\(\textbf{P}(E_i \mid C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\textbf{P}(E_i \mid \bar{C})\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\Lambda_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(E_1\)</span></td>
+<td>Sangre tipo O</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.45</td>
+<td style="text-align: center;">2.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(E_2\)</span></td>
+<td>Coincidencia de huellas dactilares</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.21</td>
+<td style="text-align: center;">4.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(E_3\)</span></td>
+<td>El asesino es zurdo</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.106</td>
+<td style="text-align: center;">9.43</td>
+</tr>
+</tbody>
+</table>
+<p>Tenemos que la evidencia con mayor ranzón de verosimulitud es <span class="math inline">\(E_3\)</span>, sería la evidencia con más fuerza probatoria, mientras que la evidencia <span class="math inline">\(E_1\)</span> sería la evidencia con menos fuerza probatoria.</p>
+<p>La razón de verosimilitud de evidencia total <span class="math inline">\(E\)</span> se obtiene multiplicando las razones de verosimilitud de las evidencias individuales: <span class="math display">\[
+\Lambda(E)=\Lambda(E_1)\cdot\Lambda(E_2)\cdot\Lambda(E_3)=2.22\cdot  4.76 \cdot 9.43 = 99.65.
+\]</span></p>
+<p>Por otro lado, como la probabilidad inicial de culpabilidad era <span class="math inline">\(\textbf{P}(C)=0.5\)</span>, se tiene <span class="math inline">\(\mathrm{Odds}(C)=1\)</span>, y por tanto, incorporando la evidencia total <span class="math inline">\(E\)</span>, tenemos: <span class="math display">\[
+\mathrm{Odds}(C\mid E)=\mathrm{Odds}(C)\cdot\Lambda(E)=99.65.
+\]</span></p>
+<p>Lo que, en términos de probabilidad, se traduce en <span class="math display">\[
+\textbf{P}(C\mid E)=\frac{99.65}{1+99.65}\approx 0.99,
+\]</span> que era la probabilidad de culpabilidad que obtuvimos anteriormente.</p>
+<p>En general, en el análisis de las evidencias forenses se procede como sigue:</p>
+<ol type="1">
+<li><p>Definir la hipótesis <span class="math inline">\(C\)</span> que se desea evaluar (por ejemplo, la culpabilidad del sospechoso).</p></li>
+<li><p>Determinar la probabilidad inicial <span class="math inline">\(\mathbf{P}(C)\)</span> a partir de la información preliminar del caso, antes de considerar las pruebas forenses.</p></li>
+<li><p>Calcular las odds iniciales:</p></li>
+</ol>
+<p><span class="math display">\[
+\mathrm{Odds}(C)=\frac{\mathbf{P}(C)}{1-\mathbf{P}(C)}.
+\]</span></p>
+<ol start="4" type="1">
+<li>Identificar las pruebas forenses relevantes:</li>
+</ol>
+<p><span class="math display">\[
+E_1, E_2, \ldots, E_n.
+\]</span></p>
+<ol start="5" type="1">
+<li><p>Calcular las razones de verosimilitud individuales: <span class="math display">\[
+\Lambda(E_1), \Lambda(E_2), \ldots, \Lambda(E_n),
+\]</span> basándose en datos poblacionales, estudios forenses o conocimiento experto.</p></li>
+<li><p>Calcular la razón de verosimilitud total: <span class="math display">\[
+\Lambda(E)=\Lambda(E_1)\cdot\Lambda(E_2)\cdots\Lambda(E_n).
+\]</span></p></li>
+<li><p>Actualizar las odds con la evidencia total: <span class="math display">\[
+\mathrm{Odds}(C\mid E)=\mathrm{Odds}(C)\cdot\Lambda(E).
+\]</span></p></li>
+<li><p>Obtener la probabilidad posterior: <span class="math display">\[
+\mathbf{P}(C\mid E)=\frac{\mathrm{Odds}(C\mid E)}{1+\mathrm{Odds}(C\mid E)}.
+\]</span></p></li>
+</ol>
+<iframe width="100%" height="480" src="video_bayes1.mp4" title="Análisis de pruebas forenses mediante la regla de Bayes" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</section>
+<section id="caso-real-indentificación-de-los-restos-de-ricardo-iii" class="level3" data-number="5.8.2">
+<h3 data-number="5.8.2" class="anchored" data-anchor-id="caso-real-indentificación-de-los-restos-de-ricardo-iii"><span class="header-section-number">5.8.2</span> Caso real: indentificación de los restos de Ricardo III</h3>
+<p>En el año 2012, en base a leyendas populares, los arqueólogos comenzaron la búsqueda de los restos de Ricardo III en un aparcamiento en Leicester (Reino Unido). No tardaron en encontrar un esqueleto.</p>
+<!-- \begin{figure}[fig1] -->
+<!-- \centering -->
+<!-- \includegraphics[width=80mm]{ricardoIII.jpg} -->
+<!-- %\caption{Dos trayectorias del paseo aleatorio simétrico} -->
+<!-- \end{figure} -->
+<p>Las pruebas documentales y registros históricos, soportaban débilmente que el esqueleto fuese Ricardo III, dando una probabilidad inicial de</p>
+<p><span class="math display">\[
+\textbf{P}(C)=\frac{1}{40}=0.0256
+\]</span></p>
+<p>de que realmente fuera él. Lo que refleja que, aun encontrándose un esqueleto en la zona correcta, era mucho más probable que se tratara de otra persona enterrada allí a lo largo de los siglos.</p>
+<p>Dicha probabilidad puede transformarse en odds: <span class="math display">\[
+\mathrm{Odds}(C)=\frac{1/40}{1-1/40}= 0.0256,
+\]</span> obteniendo un número bastante más bajo que 1.</p>
+<p><strong>Evidencias analizadas:</strong> A partir de esta probabilidad inicial, se incorporaron progresivamente diversas líneas de evidencia independientes, tanto antropológicas como genéticas. Para cada evidencia <span class="math inline">\(E_i\)</span>, se evaluó su compatibilidad con ambas hipótesis calculando la correspondiente razón de verosimilitud.</p>
+<p>Las principales evidencias consideradas fueron las siguientes:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 27%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Evidencia <span class="math inline">\(E_i\)</span></th>
+<th>Descripción</th>
+<th style="text-align: center;">Razón de verosimilitud <span class="math inline">\(\Lambda_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(E_1\)</span></td>
+<td>Sexo y edad del esqueleto compatibles con Ricardo III</td>
+<td style="text-align: center;">5.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(E_2\)</span></td>
+<td>Datación por radiocarbono (siglo XV)</td>
+<td style="text-align: center;">1.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(E_3\)</span></td>
+<td>Escoliosis severa compatible con descripciones históricas</td>
+<td style="text-align: center;">212</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(E_4\)</span></td>
+<td>Heridas perimortem compatibles con muerte en batalla</td>
+<td style="text-align: center;">42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(E_5\)</span></td>
+<td>Coincidencia de ADN mitocondrial con descendientes maternos</td>
+<td style="text-align: center;">478</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(E_6\)</span></td>
+<td>Haplotipo del cromosoma Y (discrepancia)</td>
+<td style="text-align: center;">0.16</td>
+</tr>
+</tbody>
+</table>
+<p>Vemos que la evidencia con mayor fuerza probatoria es la coincidencia del ADN mitocondrial con descendientes maternos. Todas las pruebas respaldan que los restos correspondan a Ricardo III, salvo la discrepancia del cromosoma Y con descendientes paternos. Esta prueba en contra podría deberse a una infidelidad en la línea paterna que diera lugar a un hijo bastardo. En este último caso, se obtiene una razón de verosimilitud menor que 1.</p>
+<p>Veamos cómo se traducen las evidencias anteriores en términos de probabilidad.</p>
+<p>La razón de verisilitud total es el producto de todas las evidencias individuales: <span class="math display">\[
+\Lambda(E) = 5.3 \cdot 1.8 \cdot 212 \cdot 42 \cdot  478 \cdot 0.16=6496529.
+\]</span> Tras incorporar toda la evidencia total <span class="math inline">\(E\)</span>: <span class="math display">\[
+\mathrm{Odds}(C|E)=\Lambda(E)\cdot \mathrm{Odds}(C)=6496529\cdot 0.0256= 166311.1.
+\]</span> Volviendo a probabilidad: <span class="math display">\[
+\textbf{P}(C|E)=\frac{166311.1}{1+166311.1}=0.999994.
+\]</span></p>
+<p>Como hemos comprobado, las pruebas condujeron a una probabilidad posterior abrumadora, de 0.999994, de que los restos pertenecieran a Ricardo III. Esta evidencia fue considerada suficientemente sólida por la comunidad científica e institucional como para reconocer oficialmente la identidad de los restos y proceder a su entierro con todos los honores en la catedral de Leicester.</p>
+<iframe width="100%" height="480" src="video_Bayes2.mp4" title="Análisis de los restos de Ricardo III mediante la regla de Bayes" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+<p><strong>Referencias:</strong></p>
+<ol type="1">
+<li><p>Spiegelhalter, D. (2019). <em>El arte de la estadística: Cómo aprender a partir de los datos</em>. Barcelona: Capitán Swing.</p></li>
+<li><p>King, T., Fortes, G., Balaresque, P., <em>et al.</em> <strong>Identification of the remains of King Richard III</strong>. <em>Nature Communications</em>, <strong>5</strong>, 5631 (2014).<br>
+<a href="https://doi.org/10.1038/ncomms6631" class="uri">https://doi.org/10.1038/ncomms6631</a></p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Tema3-bivariante2.html" class="pagination-link" aria-label="Tema 3. Estadística descriptiva bivariante">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tema 3. Estadística descriptiva bivariante</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
